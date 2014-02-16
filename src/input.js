@@ -65,10 +65,8 @@ function det_melody(lat, lon) {
 //incl. focus shortcuts
 //keyup so that  "focus" functions will happen after key is pressed
 //next is m,./
-//we use uiopjkl; because the other side (asdfqwer) contains notes we need (a,e,d,f,etc.)
-//use left hand on the keyboard right hand on mouse (a little odd but)
 
-var macro_keys = [13,85,73,79,80,74,75,76,186];
+var macro_keys = [13, 81,87,69,82, 65,83,68,70];
 $("body").keyup(function(e) { 
 
 	//var backspace = jQuery.Event("keydown", { keyCode: 20 });
@@ -76,45 +74,45 @@ $("body").keyup(function(e) {
 	if (e.keyCode == 13) { //ENTER to updateAll
 		updateAll();
 	}
-	else if (e.keyCode == 85) { //U
+	else if (e.keyCode == 81) { //Q
 		var t = $("#hat_text").val();
 		$("#hat_text").focus();
 		$("#hat_text").val(t);
 	}
-	else if (e.keyCode == 73) { //I
+	else if (e.keyCode == 87) { //W
 		var t = $("#snare_text").val();
 		$("#snare_text").focus();
 		$("#snare_text").val(t);
 	}
-	else if (e.keyCode == 79) { //o
+	else if (e.keyCode == 69) { //E
 		var t = $("#kick_text").val();
 		$("#kick_text").focus();
 		$("#kick_text").val(t);
 	}
-	else if (e.keyCode == 80) { //P
+	else if (e.keyCode == 82) { //R
 		var t = $("#noise_text").val();
 		$("#noise_text").focus();
 		$("#noise_text").val(t);
 	}
-	else if (e.keyCode == 74) { //J
+	else if (e.keyCode == 65) { //A
 		var t = $("#h_seq_text").val();
 		$("#h_seq_text").focus();
 		$("#h_seq_text").val(t);
 		$("#h_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 75) { //K
+	else if (e.keyCode == 83) { //S
 		var t = $("#s_seq_text").val();
 		$("#s_seq_text").focus();
 		$("#s_seq_text").val(t);
 		$("#s_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 76) { //L
+	else if (e.keyCode == 68) { //D
 		var t = $("#k_seq_text").val();
 		$("#k_seq_text").focus();
 		$("#k_seq_text").val(t);
 		$("#k_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 186) { //;
+	else if (e.keyCode == 70) { //F
 		var t = $("#n_seq_text").val();
 		$("#n_seq_text").focus();
 		$("#n_seq_text").val(t);
