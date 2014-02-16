@@ -64,6 +64,11 @@ function det_melody(lat, lon) {
 //controls
 //incl. focus shortcuts
 //keyup so that  "focus" functions will happen after key is pressed
+//next is m,./
+//we use uiopjkl; because the other side (asdfqwer) contains notes we need (a,e,d,f,etc.)
+//use left hand on the keyboard right hand on mouse (a little odd but)
+
+var macro_keys = [13,85,73,79,80,74,75,76,186];
 $("body").keyup(function(e) { 
 
 	//var backspace = jQuery.Event("keydown", { keyCode: 20 });
@@ -131,58 +136,58 @@ $("#preset_giveDrummer").click(function() {giveDrummer();});
 
 //controls for keyboard shortcuts macros
 $("#hat_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#hat_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#hat_text").val().slice(0,-1);
 		$("#hat_text").val(t);
 	}
 });
 $("#snare_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#snare_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#snare_text").val().slice(0,-1);
 		$("#snare_text").val(t);
 	}
 });
 $("#kick_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#kick_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#kick_text").val().slice(0,-1);
 		$("#kick_text").val(t);
 	}
 });
 $("#noise_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#noise_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#noise_text").val().slice(0,-1);
 		$("#noise_text").val(t);
 	}
 });
 $("#h_seq_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#h_seq_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#h_seq_text").val().slice(0,-1);
 		$("#h_seq_text").val(t);
 	}
 });
 $("#s_seq_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#s_seq_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#s_seq_text").val().slice(0,-1);
 		$("#s_seq_text").val(t);
 	}
 });
 $("#k_seq_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#k_seq_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#k_seq_text").val().slice(0,-1);
 		$("#k_seq_text").val(t);
 	}
 });
 $("#n_seq_text").keyup(function(e) {
-	if (e.keyCode == 85 || e.keyCode == 73 || e.keyCode == 79 || e.keyCode == 80 || e.keyCode == 74 || e.keyCode == 75 || e.keyCode == 76 || e.keyCode == 186) {
+	if (macro_keys.indexOf(e.keyCode) != -1) {
 		//this.value=this.value.replace(/[jkl;uiopr]/,'');
-		var t = $("#n_seq_text").val().replace(/[jkl;JKL;uioprUIOPR]/,"");
+		var t = $("#n_seq_text").val().slice(0,-1);
 		$("#n_seq_text").val(t);
 	}
 });
