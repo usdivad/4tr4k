@@ -194,12 +194,34 @@ function octUp(s, box) {
 	box.val(ns);
 }
 
+//Snapshots
 function snapshot_save() {
-	var snapshot = [$("#hat_text").val(), $("#snare_text").val(), $("#kick_text").val(), $("#noise_text").val(), $("#h_seq_text").val(), $("#s_seq_text").val(), $("#k_seq_text").val(), $("#n_seq_text").val(), $("#bpm_text").val(),];
+	var snapshot = [$("#hat_text").val(), $("#snare_text").val(), $("#kick_text").val(), $("#noise_text").val(), $("#h_seq_text").val(), $("#s_seq_text").val(), $("#k_seq_text").val(), $("#n_seq_text").val(), $("#bpm_text").val()];
 	return snapshot;
 }
 
 function snapshot_set(snapshot) {
 	var s = snapshot;
 	set_tracks(s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8]);
+}
+
+
+//Random gens
+function random_rhythm() {
+	var max = 4000000; //4 million
+	return (Math.floor(Math.random()*max)).toString(2); //gen rand binary
+}
+
+function random_pitch() {
+	var max_length = 12;
+	var max_octave = 5;
+	var seq = "";
+	var pitches = ["A","Bb","C","Db","D","Eb","E","F","Gb","G"];
+	for (var i=0; i<max_length; i++) {
+		var p = pitches[Math.floor(Math.random()*pitches.length)];
+		var o = Math.floor(Math.random()*max_octave);
+		seq += p + o + " ";
+	}
+	seq = seq.slice(0, -1); //trim last space
+	return seq;
 }

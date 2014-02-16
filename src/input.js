@@ -220,3 +220,9 @@ $("#snapshot2_set").click(function() {
 $("#snapshot3_set").click(function() {
 	snapshot_set(snapshot3);
 });
+
+
+//Random functions! YAY!!
+$("#random").click(function() {
+	set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), Math.floor(Math.random()*180)+60);
+});
