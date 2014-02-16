@@ -3,7 +3,8 @@
 	<head>
 <link href='2_style.css' rel='stylesheet' type='text/css'>
 		<div id="header">
-		<b>4TR4K</b> <a href="http://usdivad.com/">~david su</a>
+		<b>4TR4K QG</b> <a href="http://usdivad.com/">~david su</a>
+		<!--<br><font size="2.5px">Best viewed in Chrome at 125%</font>-->
 		<br><br>
 		
 	</div>
@@ -14,7 +15,22 @@
 		<b>PLAYBACK</b>
 		<br>
 		<input type="button" id="play" value="play">
-		<input type="button" id="pause" value="pause"><br><br>
+		<input type="button" id="pause" value="pause">
+		<br><br><center><input type="button" id="clear" value="clear"></center>
+		<br><br>
+		</div>
+		<div id="snapshots_box">
+			<b>SNAPSHOTS</b>
+			<br>
+			<input type="button" id="snapshot1_save" value="Save 1">
+			<input type="button" id="snapshot1_set" value="Set 1">
+			<br>
+			<input type="button" id="snapshot2_save" value="Save 2">
+			<input type="button" id="snapshot2_set" value="Set 2">
+			<br>
+			<input type="button" id="snapshot3_save" value="Save 3">
+			<input type="button" id="snapshot3_set" value="Set 3">
+
 		</div>
 		<div id="preset_box">
 			<b>PRESETS</b><br>
@@ -38,10 +54,37 @@
 		<div id="p_box">
 			<form id="scoobydoo">
 		<b>PITCH</b><br>
-		H_SEQ: <span style="color:white">[j]</span> <input type="text" id="h_seq_text" value="A3" onclick="$('#h_select').attr('checked', 'checked');"> <input type="button" id="h_octDown" value="- 8ve"><input type="button" id="h_octUp" value="+ 8ve">  <input type="radio" name="select" id="h_select" value="h" checked="checked"><br><br>
-		S_SEQ: <span style="color:white">[k]</span> <input type="text" id="s_seq_text" value="A2" onclick="$('#s_select').attr('checked', 'checked');"> <input type="button" id="s_octDown" value="- 8ve"><input type="button" id="s_octUp" value="+ 8ve"> <input type="radio" name="select" id="s_select" value="s"><br><br>
-		K_SEQ: <span style="color:white">[L]</span> <input type="text" id="k_seq_text" value="A1" onclick="$('#k_select').attr('checked', 'checked');"> <input type="button" id="k_octDown" value="- 8ve"><input type="button" id="k_octUp" value="+ 8ve"> <input type="radio" name="select" value="k" id="k_select"><br><br>
-		N_SEQ: <span style="color:white">[;]</span> <input type="text" id="n_seq_text" value="A3" onclick="$('#n_select').attr('checked', 'checked');"> <input type="button" id="n_octDown" value="- 8ve"><input type="button" id="n_octUp" value="+ 8ve"> <input type="radio" name="select" value="n" id="n_select">
+		H_SEQ: 
+		<span style="color:white">[j]</span>
+		<input type="text" id="h_seq_text" value="A3" onclick="$('#h_select').attr('checked', 'checked');">
+		<input type="button" id="h_octDown" value="- 8ve">
+		<input type="button" id="h_octUp" value="+ 8ve">
+		<input type="radio" name="select" id="h_select" value="h" checked="checked">
+		<br><br>
+		
+		S_SEQ: 
+		<span style="color:white">[k]</span>
+		<input type="text" id="s_seq_text" value="A2" onclick="$('#s_select').attr('checked', 'checked');">
+		<input type="button" id="s_octDown" value="- 8ve">
+		<input type="button" id="s_octUp" value="+ 8ve">
+		<input type="radio" name="select" id="s_select" value="s">
+		<br><br>
+
+		K_SEQ: 
+		<span style="color:white">[L]</span>
+		<input type="text" id="k_seq_text" value="A1" onclick="$('#k_select').attr('checked', 'checked');">
+		<input type="button" id="k_octDown" value="- 8ve">
+		<input type="button" id="k_octUp" value="+ 8ve">
+		<input type="radio" name="select" value="k" id="k_select">
+		<br><br>
+
+
+		N_SEQ: 
+		<span style="color:white">[;]</span>
+		<input type="text" id="n_seq_text" value="A3" onclick="$('#n_select').attr('checked', 'checked');">
+		<input type="button" id="n_octDown" value="- 8ve">
+		<input type="button" id="n_octUp" value="+ 8ve">
+		<input type="radio" name="select" value="n" id="n_select">
 	</form>
 		</div>
 		<div id="display_boxes">

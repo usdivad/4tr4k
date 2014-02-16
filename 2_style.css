@@ -9,14 +9,25 @@ html {
 				width:300px;
 			}
       #header {
-        padding-left: 20px;
+        padding-left: 50px;
         padding-top: 0px;
         
       }
 			#playback_box {
-				padding-left: 200px;
+				padding-left: 50px;
+        padding-right: 50px;
 				padding-top: 10px;
+        float:left;
+        height: 100px;
 			}
+
+      #snapshots_box {
+        padding-left: 200px;
+        padding-top: 10px;
+        padding-bottom: 50px;
+        height: 80px;
+      }
+
 			#r_box {
 				padding-left: 50px;
 			}
@@ -59,6 +70,7 @@ html {
 				margin-top: 20px;
 			}
 			#glob_box {
+        padding-left: 50px;
 				float:none;
 				margin-top: 75px;
 				padding-bottom: 20px;
