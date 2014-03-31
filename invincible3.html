@@ -16,8 +16,8 @@
 		#playback_box {
 			float:none;
 		}
-		#sections_box {
-			padding-bottom:20px;
+		#sections_box, #seed_box {
+			padding-bottom:50px;
 			padding-left:50px;
 		}
 		body {
@@ -46,9 +46,16 @@
 			<input type="button" id="snapshot3_set" value="Set 3">
 
 		</div>
-		<div id="markov_box">
-			...and in this lies the great distinction between great men and little men.<br>
-			<input type="button" id="markov_generate" value="Generate great man">
+		<div id="seed_box">
+			{<br>Choose your melodic seed<br>
+			<input type="button" id="seed_parker" value='Charlie Parker - "Confirmation"'><br>
+			<input type="button" id="seed_bach" value='J.S. Bach - "Canon a 2 cancrizans (from the Musical Offering)"'><br>}
+		</div>
+		<div id="sections_box">
+			<b>...and in this lies the great distinction between great men and little men.<br></b>
+			<input type="button" id="generate1" value="Generate little man">
+			<input type="button" id="generate2" value="Generate middleman">
+			<input type="button" id="generate3" value="Generate great man">
 
 		</div>
 		<div id="preset_box">
@@ -137,27 +144,44 @@
 
 <script>
 	//MARKOV!
-	var seed_pitch = "A2 C3 A2 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 G2 Gb2 A2 D2 D3 E3 A2 Eb3 D3 Db3 F2 G2 E2 C3 A2 F2 Bb2 A2 Ab2 G2 A2 F2 G2 Eb2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Db2 F2 F2 Ab2 Bb2 F2 Ab2 Bb2 Eb2 G2 Bb2 A2 Gb2 G2 Bb2 A2 Bb2 A2 G2 C3 Ab2 A2 F2 D3 C3 G2 Eb2 C2 B2 G2 G2 Bb2 C3 Bb2 G2 Eb2 Ab2 Gb2 B1 F2 A2 F2 A2 G2 G2 Bb2 Db3 Bb2 Ab2 A2 C3 Bb2 Gb2 Ab2 F2 E2 Eb2 Ab2 Ab2 Ab2 Ab2 Gb2 E2 F2 Ab2 C3 Eb3 D3 C3 Db3 Bb2 G2 Db2 F2 Ab2 E2 D2 C2 C3 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 Ab2 A2 Db2 D2 F2 D2 F2 A2 F2 D2 F2 B1 E2 G2"; //Charlie Parker - "Confirmation" (Verve 8005, Omnibook p1)
+	//Charlie Parker - "Confirmation" (Verve 8005, Omnibook p1)
+	var melody_parker = "A2 C3 A2 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 G2 Gb2 A2 D2 D3 E3 A2 Eb3 D3 Db3 F2 G2 E2 C3 A2 F2 Bb2 A2 Ab2 G2 A2 F2 G2 Eb2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Db2 F2 F2 Ab2 Bb2 F2 Ab2 Bb2 Eb2 G2 Bb2 A2 Gb2 G2 Bb2 A2 Bb2 A2 G2 C3 Ab2 A2 F2 D3 C3 G2 Eb2 C2 B2 G2 G2 Bb2 C3 Bb2 G2 Eb2 Ab2 Gb2 B1 F2 A2 F2 A2 G2 G2 Bb2 Db3 Bb2 Ab2 A2 C3 Bb2 Gb2 Ab2 F2 E2 Eb2 Ab2 Ab2 Ab2 Ab2 Gb2 E2 F2 Ab2 C3 Eb3 D3 C3 Db3 Bb2 G2 Db2 F2 Ab2 E2 D2 C2 C3 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 Ab2 A2 Db2 D2 F2 D2 F2 A2 F2 D2 F2 B1 E2 G2";
 
-	//try w bach!
+	//J.S. Bach - "Canon a 2 cancrizans (from the Musical Offering)" (BWV 1079)
+	var melody_bach = "Eb2 C2 Eb2 G2 Ab2 G2 F2 G2 Eb2 Eb2 D2 C2 C3 Bb2 G2 Ab2 F2 F2 Eb2 F2 D2 C2 Eb2 F2 Ab2 Bb2 G2 Bb2 C3 F3 G2 Ab2 Bb2 Eb2 F2 Ab2 Bb2 C3 G2 Eb2 C2 Eb2 Bb2 C3 C3 D3 D3 G2 Eb2 F3 D3 D3 Ab3 Eb3 C3 C3 Eb3 Eb3 G2 Ab2 D2 G2 F2 F2 G2 G2 Bb2 G2 F3 F3 C2 F2 F2 F2 G2 C3 C3 Eb3 Bb2 G2 D2";
 
-	var seed_arr = seed_pitch.split(" ");
-	//seed_arr = ["Bb2", "Bb2", "Ab2", "Gb2", "Gb2", "F2", "E2", "E2", "Db2", "C2", "Bb2", "Bb2", "Ab2", "Ab2", "Gb2", "Bb1"];
 
+	//Original Invincible Theme
+	//seed_arr = ["Bb2", "Bb2", "Ab2", "Gb2", "Gb2", "F2", "E2", "E2", "Db2", "C2", "Bb2", "Bb2", "Ab2", "Ab2", "Gb2", "Bb1", "Bb2", "C3", "C3", "c3", "eb3", "F3", "F3", "Db3", "c3", 'db3', 'db3', 'd3', 'd3', 'c3', 'bb2', 'bb2'];
+
+	var seed_arr = [];
 	var pitches = {};
+	//default
+	markov_setup(melody_parker);
 
-	//Setup the chain via associative arrays (this way we don't have to manually calculate probabilities)
-	for (var i=0; i<seed_arr.length; i++) {
-		var pitch = seed_arr[i];
-		var following = seed_arr[0];
-		if (i < seed_arr.length-1) {
-			following = seed_arr[i+1];
+	function markov_setup(seed_pitch) {
+		seed_arr = seed_pitch.split(" ");
+
+		//Setup the chain via associative arrays (this way we don't have to manually calculate probabilities)
+		for (var i=0; i<seed_arr.length; i++) {
+			var pitch = seed_arr[i];
+			var following = seed_arr[0];
+			if (i < seed_arr.length-1) {
+				following = seed_arr[i+1];
+			}
+			if (!pitches.hasOwnProperty(pitch)) {
+				pitches[pitch] = [];
+			}
+			pitches[pitch].push(following);
 		}
-		if (!pitches.hasOwnProperty(pitch)) {
-			pitches[pitch] = [];
-		}
-		pitches[pitch].push(following);
 	}
+
+	$("#seed_parker").click(function() {
+		markov_setup(melody_parker);
+	});
+	$("#seed_bach").click(function() {
+		markov_setup(melody_bach);
+	});
 
 	//Construct a melody
 	function markov_melody(size) {
@@ -184,9 +208,8 @@
 		return arr[idx];
 	}
 
-
-	//User click
-	$("#markov_generate").click(function() {
+	//Genearate
+	function generate_man(type) {
 		var r_lead = random_rhythm();
 		var r_comp = random_rhythm();
 		var r_drums = random_rhythm(); //Haiku below:
@@ -211,22 +234,42 @@
 		
 		//Using hard-coded rhythms (more idiomatic)
 
-		//v1: jazz style
-		//set_tracks("X0X", "X00", "10X", r_drums, p_lead, p_comp, p_comp, p_drums, 104*1.5);
+		switch (type) {
+			case 1:
+				//v1: jazz style
+				set_tracks("1XX", "X00", "10X", r_drums, p_lead, p_comp, p_comp, p_drums, 104*1.5);
+				for (var i=0; i<2; i++) {
+					$("#n_octUp").trigger("click");
+				}
+				break;
 
-		//v2: atonal fugue like
-		//set_tracks("1XX", "0", "10X", r_drums, p_lead, "[tacet]", p_lead, p_lead, 104*1.5);
+			case 2:
+				//v2: atonal fugue like
+				set_tracks("X0X", "0", "10X", "10X", p_lead, "[tacet]", p_lead, p_lead, 104*1.5);
+				break;
 
-		//v3: even weirder canon
-		set_tracks("1", "0", "1", 0, p_lead, "[tacet]", "F2 f2 f2 f2 " + p_lead, "[tacet]", 104);
+			case 3:
+				//v3: even weirder canon
+				set_tracks("1", "0", "1", 0, p_lead, "[tacet]", "F2 f2 f2 f2 " + p_lead, "[tacet]", 104);
+				break;
+		}
 
 		//OK put all three together!!
 		
 		//Octave shifting (old stupid way)
 		$("#k_octDown").trigger("click");
-		$("#h_octUp").trigger("click");
-		$("#h_octUp").trigger("click");
-	});
+		for (var i=0; i<2; i++) {
+			$("#h_octUp").trigger("click");
+		}
+		for (var i=0; i<3; i++) {
+			$("#n_octUp").trigger("click");
+		}
+	}
+
+	//User click
+	$("#generate1").click(function(){generate_man(3);});
+	$("#generate2").click(function(){generate_man(2);});
+	$("#generate3").click(function(){generate_man(1);});
 
 </script>
 	
