@@ -66,13 +66,23 @@ function det_melody(lat, lon) {
 //keyup so that  "focus" functions will happen after key is pressed
 //next is m,./
 
-var macro_keys = [13, 81,87,69,82, 65,83,68,70];
+var macro_keys = [81,87,69,82, 65,83,68,70, 71,67,66,81];
 $("body").keyup(function(e) { 
 
 	//var backspace = jQuery.Event("keydown", { keyCode: 20 });
 
-	if (e.keyCode == 13) { //ENTER to updateAll
+	if (e.keyCode == 71 || e.keyCode==13) { //G or ENTER to updateAll
+		//$(":focus").val($(":focus").val().slice(0,-1));
 		updateAll();
+	}
+	else if (e.keyCode == 67) { //C to clear all
+		//console.log($(":focus")[0]);
+		$(":focus").val("");
+	}
+	else if (e.keyCode == 66) { //B to backspace to the prev space
+		var cur = $(":focus").val().split(" ");
+		cur.pop();
+		$(":focus").val(cur.join(" "));
 	}
 	else if (e.keyCode == 81) { //Q
 		var t = $("#hat_text").val();
