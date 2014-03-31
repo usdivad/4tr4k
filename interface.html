@@ -1,0 +1,194 @@
+<html>
+	<!--f2013 2_qinGang-->
+	<head>
+<link href='2_style.css' rel='stylesheet' type='text/css'>
+		<div id="header">
+		<b>4TR4K INTERFACE</b> <a href="http://usdivad.com/">~david su</a>
+		<!--<br><font size="2.5px">Best viewed in Chrome at 125%</font>-->
+		<br><br>
+		
+	</div>
+	</head>
+
+	<body>
+		<div id="playback_box">
+		<b>PLAYBACK</b>
+		<br>
+		<input type="button" id="play" value="play">
+		<input type="button" id="pause" value="pause">
+		<br>
+		<input type="button" id="clear" value="clear">
+		<input type="button" id="random" value="rand">
+		<br><br>
+		</div>
+		<div id="snapshots_box">
+			<b>SNAPSHOTS</b>
+			<br>
+			<input type="button" id="snapshot1_save" value="Save 1">
+			<input type="button" id="snapshot1_set" value="Set 1">
+			<br>
+			<input type="button" id="snapshot2_save" value="Save 2">
+			<input type="button" id="snapshot2_set" value="Set 2">
+			<br>
+			<input type="button" id="snapshot3_save" value="Save 3">
+			<input type="button" id="snapshot3_set" value="Set 3">
+
+		</div>
+		<div id="preset_box">
+			<b>PRESETS</b><br>
+			<input type="button" id="preset_giveDrummer" value="Give the Drummer Some">
+			<input type="button" id="preset_randomScales" value="Rand(iatonic)om">
+			<input type="button" id="preset_gp0" value="Glass Pagoda p0">
+			<input type="button" id="preset_gp1" value="Glass Pagoda p1">
+			<input type="button" id="preset_gp2" value="Glass Pagoda p2">
+			<input type="button" id="preset_roar" value="Roar, Lion, Roar!">
+			<br><br>
+		</div>
+		<div id="r_box">
+		<b>RHYTHM</b><br>
+		H(IGH): <span style="color:white">[q]</span> <input type="text" id="hat_text" value="0"><br><br>
+		S(MED): <span style="color:white">[w]</span> <input type="text" id="snare_text" value="0"><br><br>
+		K(LOW): <span style="color:white">[e]</span> <input type="text" id="kick_text" value="0"><br><br>
+		N(OIS): <span style="color:white">[r]</span> <input type="text" id="noise_text" value="0"><br>
+		<!--<input type="button" id="update" value="update">-->
+		</div>
+		<!--<br><Br>-->
+		<div id="p_box">
+			<form id="scoobydoo">
+		<b>PITCH</b><br>
+		H_SEQ: 
+		<span style="color:white">[a]</span>
+		<input type="text" id="h_seq_text" value="A3" onclick="$('#h_select').attr('checked', 'checked');">
+		<input type="button" id="h_octDown" value="- 8ve">
+		<input type="button" id="h_octUp" value="+ 8ve">
+		<input type="radio" name="select" id="h_select" value="h" checked="checked">
+		<br><br>
+		
+		S_SEQ: 
+		<span style="color:white">[s]</span>
+		<input type="text" id="s_seq_text" value="A2" onclick="$('#s_select').attr('checked', 'checked');">
+		<input type="button" id="s_octDown" value="- 8ve">
+		<input type="button" id="s_octUp" value="+ 8ve">
+		<input type="radio" name="select" id="s_select" value="s">
+		<br><br>
+
+		K_SEQ: 
+		<span style="color:white">[d]</span>
+		<input type="text" id="k_seq_text" value="A1" onclick="$('#k_select').attr('checked', 'checked');">
+		<input type="button" id="k_octDown" value="- 8ve">
+		<input type="button" id="k_octUp" value="+ 8ve">
+		<input type="radio" name="select" value="k" id="k_select">
+		<br><br>
+
+
+		N_SEQ: 
+		<span style="color:white">[f]</span>
+		<input type="text" id="n_seq_text" value="A3" onclick="$('#n_select').attr('checked', 'checked');">
+		<input type="button" id="n_octDown" value="- 8ve">
+		<input type="button" id="n_octUp" value="+ 8ve">
+		<input type="radio" name="select" value="n" id="n_select">
+	</form>
+		</div>
+		<div id="display_boxes">
+			<div id="h_box"></div><br>
+			<div id="s_box"></div><br>
+			<div id="k_box"></div><br>
+			<div id="n_box"></div><br>
+		</div>
+		<br><br><br><br><br><br>
+		<div id="glob_box"><br>
+		<b>GLOB</b><br>
+		BPM16: <input type="text" id="bpm_text" value="90"><br>
+		:)<br>
+		<!--<input type="button" id="bang" value="bang">-->
+		</div>
+
+
+<!-- onclicks = badoop, oh well loo loo-->
+<!-- the spans are the black notes BEFORE the div anchors-->
+<div id="p-wrapper">
+	<ul id="piano">
+
+		<li><div class="anchor" onclick="pianoInput('B0');"></div><span></span></li>
+
+		<!--octave-->
+		<li><div class="anchor" onclick="pianoInput('C1');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('D1');"></div><span onclick="pianoInput('Db1');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('E1');"></div><span onclick="pianoInput('Eb1');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('F1');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('G1');"></div><span onclick="pianoInput('Gb1');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('A1');"></div><span onclick="pianoInput('Ab1');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('B1');"></div><span onclick="pianoInput('Bb1');"></span></li>
+
+		<!--octave-->
+		<li><div class="anchor" onclick="pianoInput('C2');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('D2');"></div><span onclick="pianoInput('Db2');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('E2');"></div><span onclick="pianoInput('Eb2');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('F2');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('G2');"></div><span onclick="pianoInput('Gb2');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('A2');"></div><span onclick="pianoInput('Ab2');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('B2');"></div><span onclick="pianoInput('Bb2');"></span></li>
+
+		<!--octave-->
+		<li><div class="anchor" onclick="pianoInput('C3');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('D3');"></div><span onclick="pianoInput('Db3');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('E3');"></div><span onclick="pianoInput('Eb3');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('F3');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('G3');"></div><span onclick="pianoInput('Gb3');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('A3');"></div><span onclick="pianoInput('Ab3');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('B3');"></div><span onclick="pianoInput('Bb3');"></span></li>
+
+		<!--octave-->
+		<li><div class="anchor" onclick="pianoInput('C4');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('D4');"></div><span onclick="pianoInput('Db4');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('E4');"></div><span onclick="pianoInput('Eb4');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('F4');"></div></li>
+		<li><div class="anchor" onclick="pianoInput('G4');"></div><span onclick="pianoInput('Gb4');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('A4');"></div><span onclick="pianoInput('Ab4');"></span></li>
+		<li><div class="anchor" onclick="pianoInput('B4');"></div><span onclick="pianoInput('Bb4');"></span></li>
+
+	</ul>
+</div>
+
+
+		<br><br>
+		<u>notes on notes</u><br>
+		rhythm: 1 = note on, 0 = note off, X = coin toss on/off<br>
+		pitch: midi pitches (note+octave)<br>
+		bpm: trigger at 16th note value<br>
+		Press BACKSPACE to delete last note input<br>
+		Press C to clear the selected input field<br>
+		PRESS G OR ENTER TO UPDATE ALL TRACKS
+		<br><br><b>device properties</b><br>
+		<div id="latitude_display">latitude: x</div>
+		<div id="longitude_display">longitude: y</div>
+		<!--<input type="Button" value="Start" onClick="start();">
+		<input type="Button" value="Stop" onClick="stop();">-->
+		<div id="num_watches">number of watches: z</div>
+		<div id="acceleration_display">acceleration: ?</div>
+		
+
+		<script src="lib/timbre.min.js"></script>
+		<script src="lib/jquery.js"></script>
+		<script src="src/display.js"></script>
+		<script src="src/geo.js"></script>
+		<script src="src/audio_functions.js"></script>
+		<script src="src/audio_base.js"></script>
+		<script src="src/audio_timer.js"></script>
+		<script src="src/input.js"></script>
+		<script src="src/compositions.js"></script>
+
+	
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42212505-1', 'usdivad.com');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>
