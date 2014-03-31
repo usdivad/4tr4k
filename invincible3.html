@@ -139,13 +139,20 @@
 	//MARKOV!
 	var seed_pitch = "A2 C3 A2 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 G2 Gb2 A2 D2 D3 E3 A2 Eb3 D3 Db3 F2 G2 E2 C3 A2 F2 Bb2 A2 Ab2 G2 A2 F2 G2 Eb2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Db2 F2 F2 Ab2 Bb2 F2 Ab2 Bb2 Eb2 G2 Bb2 A2 Gb2 G2 Bb2 A2 Bb2 A2 G2 C3 Ab2 A2 F2 D3 C3 G2 Eb2 C2 B2 G2 G2 Bb2 C3 Bb2 G2 Eb2 Ab2 Gb2 B1 F2 A2 F2 A2 G2 G2 Bb2 Db3 Bb2 Ab2 A2 C3 Bb2 Gb2 Ab2 F2 E2 Eb2 Ab2 Ab2 Ab2 Ab2 Gb2 E2 F2 Ab2 C3 Eb3 D3 C3 Db3 Bb2 G2 Db2 F2 Ab2 E2 D2 C2 C3 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 Ab2 A2 Db2 D2 F2 D2 F2 A2 F2 D2 F2 B1 E2 G2"; //Charlie Parker - "Confirmation" (Verve 8005, Omnibook p1)
 
+	//try w bach!
+
 	var seed_arr = seed_pitch.split(" ");
+	//seed_arr = ["Bb2", "Bb2", "Ab2", "Gb2", "Gb2", "F2", "E2", "E2", "Db2", "C2", "Bb2", "Bb2", "Ab2", "Ab2", "Gb2", "Bb1"];
+
 	var pitches = {};
 
 	//Setup the chain via associative arrays (this way we don't have to manually calculate probabilities)
-	for (var i=0; i<seed_arr.length-1; i++) {
+	for (var i=0; i<seed_arr.length; i++) {
 		var pitch = seed_arr[i];
-		var following = seed_arr[i+1];
+		var following = seed_arr[0];
+		if (i < seed_arr.length-1) {
+			following = seed_arr[i+1];
+		}
 		if (!pitches.hasOwnProperty(pitch)) {
 			pitches[pitch] = [];
 		}
@@ -160,21 +167,66 @@
 		for (var i=1; i<size; i++) {
 			var prev = melody[i-1];
 			var choices = pitches[prev];
-			melody.push(dice_pick(choices));
+			var next = dice_pick(choices);
+			if (next >= 0) {
+				melody.push(next);
+			}
+			else { //happens if sample size is too small
+				melody.push(dice_pick(seed_arr));
+			}
 		}
 
 		return melody.join(" ");
 	}
 
 	function dice_pick(arr) {
-		return arr[Math.floor(Math.random()*arr.length)];
+		var idx = Math.floor(Math.random()*arr.length);
+		return arr[idx];
 	}
 
 
 	//User click
 	$("#markov_generate").click(function() {
-		set_tracks()
-	})
+		var r_lead = random_rhythm();
+		var r_comp = random_rhythm();
+		var r_drums = random_rhythm(); //Haiku below:
+		var p_lead = markov_melody(123); //counting ascension
+		var p_comp = markov_melody(12); //a disappearing number
+		var p_drums = markov_melody(42); //universal truth
+
+		//Create custom tonal bassline
+		p_comp_choices = ["F2", "A2", "C3", "Eb3",   "G2", "D3"];
+		p_comp_arr = ["F2"];
+		p_comp_length = 24;
+		for (var i=0; i<p_comp_length; i++) {
+			p_comp_arr.push(dice_pick(p_comp_choices));
+		}
+		p_comp = p_comp_arr.join(" ");
+
+		//altering r_comp for arrangement (next iteration!)
+		//[code]
+
+		//Using randomly generated rhythms
+		//set_tracks(r_lead, r_comp, r_comp, r_drums, p_lead, p_comp, p_comp, p_drums, 208);
+		
+		//Using hard-coded rhythms (more idiomatic)
+
+		//v1: jazz style
+		//set_tracks("X0X", "X00", "10X", r_drums, p_lead, p_comp, p_comp, p_drums, 104*1.5);
+
+		//v2: atonal fugue like
+		//set_tracks("1XX", "0", "10X", r_drums, p_lead, "[tacet]", p_lead, p_lead, 104*1.5);
+
+		//v3: even weirder canon
+		set_tracks("1", "0", "1", 0, p_lead, "[tacet]", "F2 f2 f2 f2 " + p_lead, "[tacet]", 104);
+
+		//OK put all three together!!
+		
+		//Octave shifting (old stupid way)
+		$("#k_octDown").trigger("click");
+		$("#h_octUp").trigger("click");
+		$("#h_octUp").trigger("click");
+	});
 
 </script>
 	
