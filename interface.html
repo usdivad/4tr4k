@@ -62,6 +62,7 @@
 		<input type="button" id="h_octDown" value="- 8ve">
 		<input type="button" id="h_octUp" value="+ 8ve">
 		<input type="radio" name="select" id="h_select" value="h" checked="checked">
+		<label for="h_select"></label>
 		<br><br>
 		
 		S_SEQ: 
@@ -70,6 +71,7 @@
 		<input type="button" id="s_octDown" value="- 8ve">
 		<input type="button" id="s_octUp" value="+ 8ve">
 		<input type="radio" name="select" id="s_select" value="s">
+		<label for="s_select"></label>
 		<br><br>
 
 		K_SEQ: 
@@ -78,6 +80,7 @@
 		<input type="button" id="k_octDown" value="- 8ve">
 		<input type="button" id="k_octUp" value="+ 8ve">
 		<input type="radio" name="select" value="k" id="k_select">
+		<label for="k_select"></label>
 		<br><br>
 
 
@@ -87,6 +90,7 @@
 		<input type="button" id="n_octDown" value="- 8ve">
 		<input type="button" id="n_octUp" value="+ 8ve">
 		<input type="radio" name="select" value="n" id="n_select">
+		<label for="n_select"></label>
 	</form>
 		</div>
 		<div id="display_boxes">
@@ -109,7 +113,7 @@
 <div id="p-wrapper">
 	<ul id="piano">
 
-		<li><div class="anchor" onclick="pianoInput('B0');"></div><span></span></li>
+		<!--<li><div class="anchor" onclick="pianoInput('B0');" style=""></div><span></span></li>-->
 
 		<!--octave-->
 		<li><div class="anchor" onclick="pianoInput('C1');"></div></li>
@@ -151,7 +155,7 @@
 </div>
 
 
-		<br><br>
+		<br><br><br><br>
 		<u>notes on notes</u><br>
 		rhythm: 1 = note on, 0 = note off, X = coin toss on/off<br>
 		pitch: midi pitches (note+octave)<br>
