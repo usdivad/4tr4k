@@ -23,6 +23,11 @@
 		body {
 			background: white;
 		}
+
+		input[type=radio] {
+			margin-right: 10px;
+			margin-left: 25px;
+		}
 	</style>
 	</head>
 
@@ -47,15 +52,15 @@
 
 		</div>
 		<div id="seed_box">
-			{<br>Choose your melodic seed<br>
-			<input type="button" id="seed_parker" value='Charlie Parker - "Confirmation"'><br>
-			<input type="button" id="seed_bach" value='J.S. Bach - "Canon a 2 cancrizans (from the Musical Offering)"'><br>}
+			{<br><b>Choose your melodic seed</b><br>
+			<input type="radio" id="seed_parker" name="seed" value='Charlie Parker - "Confirmation"' checked>Charlie Parker - "Confirmation"<br>
+			<input type="radio" id="seed_bach" name="seed" value='J.S. Bach - "Canon a 2 cancrizans" (from the Musical Offering)'>J.S. Bach - "Canon a 2 cancrizans" (from the Musical Offering)<br>}
 		</div>
 		<div id="sections_box">
 			<b>...and in this lies the great distinction between great men and little men.<br></b>
-			<input type="button" id="generate1" value="Generate little man">
-			<input type="button" id="generate2" value="Generate middleman">
-			<input type="button" id="generate3" value="Generate great man">
+			<input type="radio" id="generate1" name="gen_type" value="Generate little man">Generate little man 
+			<input type="radio" id="generate2" name="gen_type" value="Generate middleman">Generate middleman 
+			<input type="radio" id="generate3" name="gen_type" value="Generate great man">Generate great man
 
 		</div>
 		<div id="preset_box">
@@ -148,7 +153,13 @@
 	var melody_parker = "A2 C3 A2 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 G2 Gb2 A2 D2 D3 E3 A2 Eb3 D3 Db3 F2 G2 E2 C3 A2 F2 Bb2 A2 Ab2 G2 A2 F2 G2 Eb2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Db2 F2 F2 Ab2 Bb2 F2 Ab2 Bb2 Eb2 G2 Bb2 A2 Gb2 G2 Bb2 A2 Bb2 A2 G2 C3 Ab2 A2 F2 D3 C3 G2 Eb2 C2 B2 G2 G2 Bb2 C3 Bb2 G2 Eb2 Ab2 Gb2 B1 F2 A2 F2 A2 G2 G2 Bb2 Db3 Bb2 Ab2 A2 C3 Bb2 Gb2 Ab2 F2 E2 Eb2 Ab2 Ab2 Ab2 Ab2 Gb2 E2 F2 Ab2 C3 Eb3 D3 C3 Db3 Bb2 G2 Db2 F2 Ab2 E2 D2 C2 C3 Bb2 A2 E2 F2 Gb2 G2 D3 Bb2 G2 A2 Db2 G2 F2 A2 G2 Bb2 A2 G2 F2 Bb2 B2 Bb2 Ab2 F2 Bb2 Ab2 C3 Bb2 Ab2 A2 Db2 D2 F2 D2 F2 A2 F2 D2 F2 B1 E2 G2";
 
 	//J.S. Bach - "Canon a 2 cancrizans (from the Musical Offering)" (BWV 1079)
-	var melody_bach = "Eb2 C2 Eb2 G2 Ab2 G2 F2 G2 Eb2 Eb2 D2 C2 C3 Bb2 G2 Ab2 F2 F2 Eb2 F2 D2 C2 Eb2 F2 Ab2 Bb2 G2 Bb2 C3 F3 G2 Ab2 Bb2 Eb2 F2 Ab2 Bb2 C3 G2 Eb2 C2 Eb2 Bb2 C3 C3 D3 D3 G2 Eb2 F3 D3 D3 Ab3 Eb3 C3 C3 Eb3 Eb3 G2 Ab2 D2 G2 F2 F2 G2 G2 Bb2 G2 F3 F3 C2 F2 F2 F2 G2 C3 C3 Eb3 Bb2 G2 D2";
+	//var melody_bach = "Eb2 C2 Eb2 G2 Ab2 G2 F2 G2 Eb2 Eb2 D2 C2 C3 Bb2 G2 Ab2 F2 F2 Eb2 F2 D2 C2 Eb2 F2 Ab2 Bb2 G2 Bb2 C3 F3 G2 Ab2 Bb2 Eb2 F2 Ab2 Bb2 C3 G2 Eb2 C2 Eb2 Bb2 C3 C3 D3 D3 G2 Eb2 F3 D3 D3 Ab3 Eb3 C3 C3 Eb3 Eb3 G2 Ab2 D2 G2 F2 F2 G2 G2 Bb2 G2 F3 F3 C2 F2 F2 F2 G2 C3 C3 Eb3 Bb2 G2 D2";
+	var melody_bach = "C2 Eb2 G2 Ab2 B1 G2 Gb2 F2 E2 Eb2 D2 Db2 C2 B1 G1 C2 F2 Eb2 D2 C2 Eb2 G2 F2 G2 C3 G2 Eb2 D2 Eb2 F2 G2 A2 B2 C3 Eb2 F2 G2 Ab2 D2 Eb2 F2 G2 F2 Eb2 D2 Eb2 F2 G2 Ab2 Bb2 Ab2 G2 F2 G2 Ab2 Bb2 C3 Db3 Bb2 Ab2 G2 A2 B2 C3 D3 Eb3 C3 B2 A2 B2 C3 D3 Eb3 F3 D3 G2 D3 C3 D3 Eb3 F3 Eb3 D3 C3 B2 C3 G2 Eb2 C2";
+	var rhythm_bach = [1000,1000,1000,1000,1000,00,1000,1000,1000,1000,1000,10,10,10,10,10,10,10,1000,1000,1000,1000];
+	for (var i=0;i<8*8;i++) {
+		rhythm_bach.push(1);
+	}
+	rhythm_bach.push(10,10,10,10);
 
 
 	//Original Invincible Theme
@@ -156,7 +167,8 @@
 
 	var seed_arr = [];
 	var pitches = {};
-	//default
+	
+	//default = parker
 	markov_setup(melody_parker);
 
 	function markov_setup(seed_pitch) {
@@ -176,6 +188,9 @@
 		}
 	}
 
+	$("#seed_parker, #seed_bach").click(function() {
+		$("input[name=gen_type]").prop("checked", false);
+	});
 	$("#seed_parker").click(function() {
 		markov_setup(melody_parker);
 	});
@@ -208,6 +223,32 @@
 		return arr[idx];
 	}
 
+	//Output probability table as a string
+	function calculateProbabilities(firstPitch) {
+	    var arr = pitches[firstPitch];
+	    var counts = {};
+
+	    for (var i=0; i<arr.length; i++) {
+	        var element = arr[i];
+	        if (counts.hasOwnProperty(element)) {
+	            counts[element] += 1;
+	        }
+	        else {
+	            counts[element] = 1;
+	        }
+	    }
+
+	    //output string
+	    var out = "Pitch: Probability of following " + firstPitch + "\n";
+
+	    for (var k in counts) {
+	        counts[k] = ((counts[k]/arr.length)*100).toFixed(2) + "%";
+	        out += k + ": " + counts[k] + "\n";
+	    }
+
+	    return out;
+	}
+
 	//Genearate
 	function generate_man(type) {
 		var r_lead = random_rhythm();
@@ -218,7 +259,7 @@
 		var p_drums = markov_melody(42); //universal truth
 
 		//Create custom tonal bassline
-		p_comp_choices = ["F2", "A2", "C3", "Eb3",   "G2", "D3"];
+		p_comp_choices = ["F2", "A2", "C3", "Eb3", "G2", "D3"];
 		p_comp_arr = ["F2"];
 		p_comp_length = 24;
 		for (var i=0; i<p_comp_length; i++) {
@@ -250,19 +291,58 @@
 
 			case 3:
 				//v3: even weirder canon
-				set_tracks("1", "0", "1", 0, p_lead, "[tacet]", "F2 f2 f2 f2 " + p_lead, "[tacet]", 104);
+				//set_tracks("1", "0", "1", 0, p_lead, "[tacet]", "F3 F3 F3 F3 "+p_lead, "[tacet]", 104);
+				
+				new_rhythms = generate_rhythms(rhythm_bach);
+				new_pitch = to_legato(p_lead, new_rhythms);
+				//set_tracks(new_rhythms, "0", new_rhythms.split("").reverse().join(""), "0", p_lead, "[tacet]", p_lead.split(" ").reverse().join(" "), "[tacet]", 104);
+				set_tracks("1", "0", "1", "0", new_pitch, "[tacet]", new_pitch.split(" ").reverse().join(" "), "[tacet]", 104);
+				console.log("rhythm: " + new_rhythms + "\n" + "pitch (original): " + p_lead);
 				break;
+		}
+
+		//use dice to pick rhythms out of an array
+		function generate_rhythms(arr) {
+			var new_rhythms = [];
+			var max = p_lead.split(" ").length;
+			for (var i=0; i<max; i++) {
+				new_rhythms.push(dice_pick(arr));
+			}
+			return new_rhythms.join("");
+		}
+
+		//returns a pitch string that is the legato version of whatever sequence is given; to use the pitch string change rhythm to "1"
+		function to_legato(pitch, rhythm) {
+			var pitch_arr = pitch.split(" ");
+			var rhythm_arr = rhythm.split("");
+			var new_pitch_arr = [];
+			//new_rhythm_arr = [];
+
+			var pitch_index = 0;
+			for (var i=0; i<rhythm_arr.length; i++) {
+				new_pitch_arr.push(pitch_arr[pitch_index]);
+				if (rhythm_arr[i] == 1) { 
+					pitch_index++;
+				}
+			}
+
+			return new_pitch_arr.join(" ");
 		}
 
 		//OK put all three together!!
 		
 		//Octave shifting (old stupid way)
-		$("#k_octDown").trigger("click");
-		for (var i=0; i<2; i++) {
+		if (type == 3) {
 			$("#h_octUp").trigger("click");
 		}
-		for (var i=0; i<3; i++) {
-			$("#n_octUp").trigger("click");
+		else {
+			$("#k_octDown").trigger("click");
+			for (var i=0; i<2; i++) {
+				$("#h_octUp").trigger("click");
+			}
+			for (var i=0; i<3; i++) {
+				$("#n_octUp").trigger("click");
+			}
 		}
 	}
 
