@@ -79,6 +79,10 @@ html {
 			head {
 				line-height: 50px;
 			}
+      #view_note {
+        font-size: 12px;
+        margin-top: 2.5px;
+      }
 
 /*Input styling based on http://stackoverflow.com/a/7096133*/
 input[type=text]
