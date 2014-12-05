@@ -77,6 +77,6 @@
 				//updateAll();
 
 			});
-			controlTimer.on();
+			controlTimer.start();
 
 			//var synth  = T("fami", 440, 0.5);

@@ -1,5 +1,5 @@
 //audio
-timbre.utils.exports("atof");
+//timbre.utils.exports("atof");
 var h_seq_string = $("#h_seq_text").val();
 var s_seq_string = $("#s_seq_text").val();
 var k_seq_string = $("#k_seq_text").val();

@@ -42,6 +42,27 @@ function ms_to_bpm(m) {
 	return ((m/1000)*60);
 }
 
+function atof(a) {
+	var note = "C";
+	var octave = "0";
+	var note_arr = a.match(/\w+/g);
+	var octave_arr = a.match(/\d+/g);
+
+	if (note_arr && note_arr.length > 0) {
+		note = note_arr[0];
+	}
+	if (octave_arr && octave_arr.length > 0) {
+		octave = octave_arr[0];
+	}
+
+	var note_names = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+	var offset = note_names.indexOf(note);
+	var multiplier = octave*12;
+
+	return offset + multiplier;
+
+}
+
 //poll/update
 function updateAll() {
 	//rhythm
@@ -129,7 +150,7 @@ function playAll() {
 	snare_synth.play();
 	kick_synth.play();
 	noise_synth.play();
-	timer.on();
+	timer.start();
 }
 
 //pause all
@@ -138,7 +159,7 @@ function pauseAll() {
 	snare_synth.pause();
 	kick_synth.pause();
 	noise_synth.pause();
-	timer.off();
+	timer.stop();
 	hat_index = 0;
 	snare_index = 0;
 	kick_index = 0;
