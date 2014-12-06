@@ -45,11 +45,12 @@ function ms_to_bpm(m) {
 function atof(a) {
 	var note = "C";
 	var octave = "0";
-	var note_arr = a.match(/\w+/g);
+	var note_arr = a.match(/[A-Za-z]+/g);
 	var octave_arr = a.match(/\d+/g);
 
 	if (note_arr && note_arr.length > 0) {
 		note = note_arr[0];
+		console.log("note is " + note);
 	}
 	if (octave_arr && octave_arr.length > 0) {
 		octave = octave_arr[0];
@@ -57,10 +58,18 @@ function atof(a) {
 
 	var note_names = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
 	var offset = note_names.indexOf(note);
-	var multiplier = octave*12;
+	var multiplier = octave*12 + 12;
 
-	return offset + multiplier;
+	console.log(offset + " + " + multiplier + " = " + (offset+multiplier));
+	return mtof(offset + multiplier);
 
+}
+
+//converts midi to hz
+function mtof(midi)
+{
+	var freq = (440 / 32) * (Math.pow(2,((midi - 9) / 12)));
+	return freq;
 }
 
 //poll/update
@@ -82,25 +91,25 @@ function updateAll() {
 	//pitch				
 	if ($("#h_seq_text").val() && $("#h_seq_text").val()!=h_seq_string) {
 		h_seq_string = $("#h_seq_text").val();
-		hat_sequence = T($("#h_seq_text").val().split(" ").map(atof));
-		hat_synth.freq = hat_sequence;
-		//hat_synth.freq.bang();
+		hat_sequence = $("#h_seq_text").val().split(" ").map(atof);
+		hat_synth.freq.value = hat_sequence;
+		// hat_synth.freq.bang();
 	}
 	if ($("#s_seq_text").val() && $("#s_seq_text").val() != s_seq_string) {
 		s_seq_string = $("#s_seq_text").val();
-		snare_sequence = T($("#s_seq_text").val().split(" ").map(atof));
+		snare_sequence = $("#s_seq_text").val().split(" ").map(atof);
 		snare_synth.freq = snare_sequence;
 		//snare_synth.freq.bang();
 	}
 	if ($("#k_seq_text").val() && $("#k_seq_text").val() != k_seq_string) {
 		k_seq_string = $("#k_seq_text").val();
-		kick_sequence = T($("#k_seq_text").val().split(" ").map(atof));
+		kick_sequence = $("#k_seq_text").val().split(" ").map(atof);
 		kick_synth.freq = kick_sequence;
 		//kick_synth.freq.bang();
 	}
 	if ($("#n_seq_text").val() && $("#n_seq_text").val() != n_seq_string) {
 		n_seq_string = $("#n_seq_text").val();
-		noise_sequence = T($("#n_seq_text").val().split(" ").map(atof));
+		noise_sequence = $("#n_seq_text").val().split(" ").map(atof);
 		noise_synth.freq = noise_sequence;
 	}
 	
@@ -111,19 +120,44 @@ function updateAll() {
 }
 
 //timer -> synth on or off (dep on code in)
-function onOff(data, synth, i, seq, disp) {
+function onOff(data, synth, i, seq, seq_i, disp) {
 
 	//console.log(i);
+	//check rhythm
 	if (data[i] == "1") {
 		synth.mul = amp;
-		seq.bang();
+		// seq.bang();
+		// synth.freq.value = seq[seq.length % seq_i];
+		// console.log(seq.length + ' % ' + seq_i + ' = ' + seq.length%seq_i);
+
+		//set freq based on seq
+		synth.freq.value = seq[seq_i];
+		if (seq_i >= seq.length-1) {
+			seq_i = 0;
+		}
+		else {
+			seq_i++;
+		}
+		console.log(synth.freq.value);
+		// console.log(seq);
 		disp.css("visibility", "visible");
 	}
+	//check rhythm
 	else if (data[i] == "X" || data[i] == "x") {
 		var dice = Math.random();
 		if (dice > 0.5) {
 			synth.mul = amp;
-			seq.bang();
+			// seq.bang();
+			// synth.freq = seq[seq.length % seq_i];
+
+			//set freq
+			synth.freq.value = seq[seq_i];
+			if (seq_i >= seq.length-1) {
+				seq_i = 0;
+			}
+			else {
+				seq_i++;
+			}
 			disp.css("visibility", "visible");
 		}
 		else {
@@ -135,13 +169,15 @@ function onOff(data, synth, i, seq, disp) {
 		synth.mul = 0;
 		disp.css("visibility", "hidden");
 	}
+
+	//set rhythm index
 	if (i>=data.length-1) {
 		i = 0;
 	}
 	else {
 		i++;
 	}
-	return i;
+	return {"data_idx": i, "seq_idx": seq_i}; //use obj for easier editing
 }
 
 //play all
@@ -164,10 +200,16 @@ function pauseAll() {
 	snare_index = 0;
 	kick_index = 0;
 	noise_index = 0;
-	hat_synth.freq = hat_sequence;
-	snare_synth.freq = snare_sequence;
-	kick_synth.freq = kick_sequence;
-	noise_synth.freq = noise_sequence;
+	h_seq_idx = 0;
+	s_seq_idx = 0;
+	k_seq_idx = 0;
+	n_seq_idx = 0;
+
+
+	// hat_synth.freq = hat_sequence;
+	// snare_synth.freq = snare_sequence;
+	// kick_synth.freq = kick_sequence;
+	// noise_synth.freq = noise_sequence;
 
 	/*
 	hat_synth.freq.index = 0;

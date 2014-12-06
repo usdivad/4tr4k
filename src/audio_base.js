@@ -5,10 +5,10 @@ var s_seq_string = $("#s_seq_text").val();
 var k_seq_string = $("#k_seq_text").val();
 var n_seq_string = $("#n_seq_text").val();
 
-var hat_sequence = T($("#h_seq_text").val().split(" ").map(atof));
-var snare_sequence = T($("#s_seq_text").val().split(" ").map(atof));
-var kick_sequence = T($("#k_seq_text").val().split(" ").map(atof));
-var noise_sequence = T($("#n_seq_text").val().split(" ").map(atof));
+var hat_sequence = $("#h_seq_text").val().split(" ").map(atof);
+var snare_sequence = $("#s_seq_text").val().split(" ").map(atof);
+var kick_sequence = $("#k_seq_text").val().split(" ").map(atof);
+var noise_sequence = $("#n_seq_text").val().split(" ").map(atof);
 //var synth  = T("fami", pitch_array, 0.5);
 
 //DIFFERENT AGES vars
@@ -24,6 +24,23 @@ var hat_index = 0;
 var snare_index = 0;
 var kick_index = 0;
 var noise_index = 0;
+
+
+// var h_seq_obj = {"seq": hat_sequence, "idx": 0};
+// var s_seq_obj = {"seq": snare_sequence, "idx": 0};
+// var k_seq_obj = {"seq": kick_sequence, "idx": 0};
+// var n_seq_obj = {"seq": noise_sequence, "idx": 0};
+
+var h_seq_idx = 0;
+var s_seq_idx = 0;
+var k_seq_idx = 0;
+var n_seq_idx = 0;
+// var seq_idx_arr = [
+//                     {"seq": hat_sequence, "idx": h_seq_idx},
+//                     {"seq": snare_sequence, "idx": s_seq_idx},
+//                     {"seq": kick_sequence, "idx": k_seq_idx},
+//                     {"seq": noise_sequence, "idx": n_seq_idx}
+//                    ];
 
 var hat_data = "0";
 var snare_data = "0";
@@ -45,10 +62,51 @@ var newMelody = oldMelody;
 
 //var hat_array = T(hat_data.split(" "));
 var timer = T("interval", bpm, function() {
-	hat_index = onOff(hat_data, hat_synth, hat_index, hat_sequence, h_box);
-	snare_index = onOff(snare_data, snare_synth, snare_index, snare_sequence, s_box);
-	kick_index = onOff(kick_data, kick_synth, kick_index, kick_sequence, k_box);
-	noise_index = onOff(noise_data, noise_synth, noise_index, noise_sequence, n_box);
+    // console.log(hat_sequence);
+
+	var h_idx_obj = onOff(hat_data, hat_synth, hat_index, hat_sequence, h_seq_idx, h_box);
+	var s_idx_obj = onOff(snare_data, snare_synth, snare_index, snare_sequence, s_seq_idx, s_box);
+	var k_idx_obj = onOff(kick_data, kick_synth, kick_index, kick_sequence, k_seq_idx, k_box);
+	var n_idx_obj = onOff(noise_data, noise_synth, noise_index, noise_sequence, n_seq_idx, n_box);
+
+    hat_index = h_idx_obj["data_idx"];
+    h_seq_idx = h_idx_obj["seq_idx"];
+    console.log(h_idx_obj);
+    snare_index = s_idx_obj["data_idx"];
+    s_seq_idx = s_idx_obj["seq_idx"];
+    kick_index = k_idx_obj["data_idx"];
+    k_seq_idx = k_idx_obj["seq_idx"];
+    noise_index = n_idx_obj["data_idx"];
+    n_seq_idx = n_idx_obj["seq_idx"];
+
+    // for (var i=0; i<seq_idx_arr.length; i++) {
+    //     var seq = seq_idx_arr[i];
+    //     s_idx = seq["idx"];
+    //     s_len = seq["seq"].length;
+    //     if (s_idx >= s_len-1) {
+    //         s_idx = 0;
+    //         console.log("over");
+    //     }
+    //     else {
+    //         s_idx++;
+    //     }
+    // }
+
+    // h_seq_idx = seq_idx_arr[0]["idx"];
+    // console.log("h seq idx is " + h_seq_idx);
+    // s_seq_idx = seq_idx_arr[1]["idx"];
+    // k_seq_idx = seq_idx_arr[2]["idx"];
+    // n_seq_idx = seq_idx_arr[3]["idx"];
+
+    // if (h_seq_idx >= hat_sequence.length - 1) {
+    //     h_seq_idx = 0;
+    // }
+    // else {
+    //     h_seq_idx++;
+    // }
+    // console.log(h_seq_idx);
+
+
 	//updateAll();
 
 });
