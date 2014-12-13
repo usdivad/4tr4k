@@ -23,18 +23,25 @@ html {
 			}
 
       #snapshots_box {
-        padding-left: 200px;
+        padding-right: 50px;
         padding-top: 10px;
         padding-bottom: 50px;
         height: 80px;
+        float:left;
+      }
+      #preset_box {
+        /*display:none;*/
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 10px;
+        height: 100px;
+        /*float:left;*/
       }
 
 			#r_box {
 				padding-left: 50px;
 			}
-			#preset_box {
-				display:none;
-			}
+
 			#h_box {
 				height: 25px;
 				width: 25px;
