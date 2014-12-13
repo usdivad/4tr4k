@@ -76,6 +76,32 @@
 				}
 				//updateAll();
 
+				//checking mute/unmute
+				// if ($("#h_active").attr("checked")) {
+				// 	hat_synth.mul = amp;
+				// }
+				// else {
+				// 	hat_synth.mul = 0;
+				// }
+				// if ($("#s_active").attr("checked")) {
+				// 	snare_synth.mul = amp;
+				// }
+				// else {
+				// 	snare_synth.mul = 0;
+				// }
+				// if ($("#k_active").attr("checked")) {
+				// 	kick_synth.mul = amp;
+				// }
+				// else {
+				// 	kick_synth.mul = 0;
+				// }
+				// if ($("#n_active").attr("checked")) {
+				// 	noise_synth.mul = amp;
+				// }
+				// else {
+				// 	noise_synth.mul = 0;
+				// }
+
 			});
 			controlTimer.start();
 

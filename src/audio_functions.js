@@ -143,12 +143,19 @@ function updateAll() {
 }
 
 //timer -> synth on or off (dep on code in)
-function onOff(data, synth, i, seq, seq_i, disp) {
+function onOff(data, synth, i, seq, seq_i, active, disp) {
 
 	//console.log(i);
 	//check rhythm
 	if (data[i] == "1") {
-		synth.mul = amp;
+		//mute/unmute
+		if (active) {
+			synth.mul = amp;
+		}
+		else {
+			console.log("muted");
+			synth.mul = 0;
+		}
 		// seq.bang();
 		// synth.freq.value = seq[seq.length % seq_i];
 		// console.log(seq.length + ' % ' + seq_i + ' = ' + seq.length%seq_i);
@@ -169,7 +176,14 @@ function onOff(data, synth, i, seq, seq_i, disp) {
 	else if (data[i] == "X" || data[i] == "x") {
 		var dice = Math.random();
 		if (dice > 0.5) {
-			synth.mul = amp;
+			//mute/unmute
+			if (active) {
+				synth.mul = amp;
+			}
+			else {
+				console.log("muted");
+				synth.mul = 0;
+			}
 			// seq.bang();
 			// synth.freq = seq[seq.length % seq_i];
 

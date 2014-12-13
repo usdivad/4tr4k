@@ -11,6 +11,12 @@ var kick_sequence = $("#k_seq_text").val().split(" ").map(atof);
 var noise_sequence = $("#n_seq_text").val().split(" ").map(atof);
 //var synth  = T("fami", pitch_array, 0.5);
 
+var h_active = $("#h_active").attr("checked");
+var s_active = $("#s_active").attr("checked");
+var k_active = $("#k_active").attr("checked");
+var n_active = $("#n_active").attr("checked");
+
+
 //DIFFERENT AGES vars
 var dax = 0;
 
@@ -64,10 +70,16 @@ var newMelody = oldMelody;
 var timer = T("interval", bpm, function() {
     // console.log(hat_sequence);
 
-	var h_idx_obj = onOff(hat_data, hat_synth, hat_index, hat_sequence, h_seq_idx, h_box);
-	var s_idx_obj = onOff(snare_data, snare_synth, snare_index, snare_sequence, s_seq_idx, s_box);
-	var k_idx_obj = onOff(kick_data, kick_synth, kick_index, kick_sequence, k_seq_idx, k_box);
-	var n_idx_obj = onOff(noise_data, noise_synth, noise_index, noise_sequence, n_seq_idx, n_box);
+    //check for mute/unmute
+    h_active = $("#h_active").attr("checked");
+    s_active = $("#s_active").attr("checked");
+    k_active = $("#k_active").attr("checked");
+    n_active = $("#n_active").attr("checked");
+
+	var h_idx_obj = onOff(hat_data, hat_synth, hat_index, hat_sequence, h_seq_idx, h_active, h_box);
+	var s_idx_obj = onOff(snare_data, snare_synth, snare_index, snare_sequence, s_seq_idx, s_active, s_box);
+	var k_idx_obj = onOff(kick_data, kick_synth, kick_index, kick_sequence, k_seq_idx, k_active, k_box);
+	var n_idx_obj = onOff(noise_data, noise_synth, noise_index, noise_sequence, n_seq_idx, n_active, n_box);
 
     hat_index = h_idx_obj["data_idx"];
     h_seq_idx = h_idx_obj["seq_idx"];
