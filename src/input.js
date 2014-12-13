@@ -69,11 +69,19 @@ function det_melody(lat, lon) {
 var macro_keys = [81,87,69,82, 65,83,68,70, 71,67,66,81];
 $("body").keyup(function(e) { 
 
+	console.log(e.keyCode);
+
 	//var backspace = jQuery.Event("keydown", { keyCode: 20 });
 
 	if (e.keyCode == 71 || e.keyCode==13) { //G or ENTER to updateAll
 		//$(":focus").val($(":focus").val().slice(0,-1));
 		updateAll();
+	}
+	else if (e.keyCode == 190) { //. to play
+		playAll();
+	}
+	else if (e.keyCode == 188) { //, to pause
+		pauseAll();
 	}
 	else if (e.keyCode == 67) { //C to clear all
 		//console.log($(":focus")[0]);
