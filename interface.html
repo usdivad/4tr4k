@@ -16,9 +16,11 @@
 		<br>
 		<input type="button" id="play" value="play">
 		<input type="button" id="pause" value="pause">
-		<br>
-		<input type="button" id="clear" value="clear">
+		<input type="button" id="clear" value="clear"><br>
+
 		<input type="button" id="random" value="rand">
+		<input type="checkbox" id="random_pitch" checked> pitch
+		<input type="checkbox" id="random_rhythm" checked> rhythm
 		<br><br>
 		</div>
 		<div id="snapshots_box">
@@ -36,14 +38,16 @@
 		</div>
 		<div id="preset_box">
 			<b>PRESETS</b><br>
-			<input type="button" id="preset_giveDrummer" value="Give the Drummer Some">
-			<input type="button" id="preset_randomScales" value="Rand(iatonic)om">
+			<!-- <input type="button" id="preset_giveDrummer" value="Give the Drummer Some">
+			<input type="button" id="preset_randomScales" value="Rand(iatonic)om"><br>
 			<input type="button" id="preset_gp0" value="Glass Pagoda p0">
 			<input type="button" id="preset_gp1" value="Glass Pagoda p1">
-			<input type="button" id="preset_gp2" value="Glass Pagoda p2">
-			<input type="button" id="preset_roar" value="Roar, Lion, Roar!">
+			<input type="button" id="preset_gp2" value="Glass Pagoda p2"><br>
+			<input type="button" id="preset_roar" value="Roar, Lion, Roar!"> -->
+			<input type="button" id="preset_longTones" value="long tones">
 			<br><br>
 		</div>
+		<br><br><br>
 		<div id="r_box">
 		<b>RHYTHM</b><br>
 		H(IGH): <span style="color:white">[q]</span> <input type="text" id="hat_text" value="0"><br><br>
@@ -102,7 +106,7 @@
 		<br><br><br><br><br><br>
 		<div id="glob_box"><br>
 		<b>GLOB</b><br>
-		BPM16: <input type="text" id="bpm_text" value="90"><br>
+		BPM16: <input type="text" id="bpm_text" value="90">                <input type="button" id="tap" value="Tap tempo"><br>
 		:)<br>
 		<!--<input type="button" id="bang" value="bang">-->
 		</div>

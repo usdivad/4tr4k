@@ -133,14 +133,28 @@ $("#play").click(function() {playAll();});
 $("#pause").click(function() {pauseAll();});
 $("#clear").click(function() {
 	set_tracks("0","0","0","0","A3","A2","A1","A3",$("#bpm_text").val());
+	updateAll();
 });
+
+
+//presets
 $("#preset_gp0").click(function() {gp0();});
 $("#preset_gp1").click(function() {gp1();});
 $("#preset_gp2").click(function() {gp2();});
 $("#preset_roar").click(function() {roar();});
 $("#preset_randomScales").click(function() {randomScales();});
 $("#preset_giveDrummer").click(function() {giveDrummer();});
+$("#preset_longTones").click(function() {
+	console.log("long tones");
 
+	//for seamless transition
+	hat_index = 0;
+	snare_index = 0;
+	kick_index = 0;
+	noise_index = 0;
+
+	set_tracks("1", "1", "1", "1", random_pitchSingle(), random_pitchSingle(), random_pitchSingle(), random_pitchSingle(), $("#bpm_text").val());
+});
 
 //controls for keyboard shortcuts macros
 $("#hat_text").keyup(function(e) {
@@ -237,5 +251,15 @@ $("#snapshot3_set").click(function() {
 
 //Random functions! YAY!!
 $("#random").click(function() {
-	set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), Math.floor(Math.random()*180)+60);
+	//all random
+	// set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), Math.floor(Math.random()*180)+60);
+	
+	//keep bpm
+	set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), $("#bpm_text").val());
+});
+
+
+//Tap tempo
+$("#tap").click(function() {
+	TapForBPM();
 });

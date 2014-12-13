@@ -1,16 +1,39 @@
 function set_tracks(rh, rs, rk, rn, ph, ps, pk, pn, b) {
-	$("#hat_text").val(rh);
-	$("#snare_text").val(rs);
-	$("#kick_text").val(rk);
-	$("#noise_text").val(rn);
+	if (rh.length > 0) {
+		$("#hat_text").val(rh);
+	}
 
+	if (rs.length > 0) {
+		$("#snare_text").val(rs);
+	}
 
-	$("#h_seq_text").val(ph);
-	$("#s_seq_text").val(ps);
-	$("#k_seq_text").val(pk);
-	$("#n_seq_text").val(pn);
+	if (rk.length > 0) {
+		$("#kick_text").val(rk);
+	}
 
-	$("#bpm_text").val(b);
+	if (rn.length > 0) {
+		$("#noise_text").val(rn);
+	}
+
+	if (ph.length > 0) {
+		$("#h_seq_text").val(ph);
+	}	
+
+	if (ps.length > 0) {
+		$("#s_seq_text").val(ps);
+	}
+
+	if (pk.length > 0) {
+		$("#k_seq_text").val(pk);
+	}
+
+	if (pn.length > 0) {
+		$("#n_seq_text").val(pn);
+	}
+
+	if (b.length > 0) {	
+		$("#bpm_text").val(b);
+	}
 
 
 	//toggle these on/off depending on whether you want them that way. e.g. 
@@ -271,20 +294,83 @@ function snapshot_set(snapshot) {
 
 //Random gens
 function random_rhythm() {
-	var max = 4000000; //4 million
-	return (Math.floor(Math.random()*max)).toString(2); //gen rand binary
+	if ($("#random_rhythm").attr("checked")) {
+		var max = 4000000; //4 million
+		return (Math.floor(Math.random()*max)).toString(2); //gen rand binary
+	}
+	else {
+		return "";
+	}
 }
 
 function random_pitch() {
-	var max_length = 12;
-	var max_octave = 5;
-	var seq = "";
-	var pitches = ["A","Bb","C","Db","D","Eb","E","F","Gb","G"];
-	for (var i=0; i<max_length; i++) {
-		var p = pitches[Math.floor(Math.random()*pitches.length)];
-		var o = Math.floor(Math.random()*max_octave);
-		seq += p + o + " ";
+	if ($("#random_pitch").attr("checked")) {
+		var max_length = 12;
+		var max_octave = 5;
+		var seq = "";
+		var pitches = ["A","Bb","C","Db","D","Eb","E","F","Gb","G"];
+		for (var i=0; i<max_length; i++) {
+			var p = pitches[Math.floor(Math.random()*pitches.length)];
+			var o = Math.floor(Math.random()*max_octave);
+			seq += p + o + " ";
+		}
+		seq = seq.slice(0, -1); //trim last space
+		return seq;
 	}
-	seq = seq.slice(0, -1); //trim last space
-	return seq;
+	else {
+		return "";
+	}
 }
+
+function random_pitchSingle() {
+	var max_octave = 5;
+	var pitches = ["A","Bb","C","Db","D","Eb","E","F","Gb","G"];
+	var p = pitches[Math.floor(Math.random()*pitches.length)];
+	var o = Math.floor(Math.random()*max_octave);
+	return p + o;
+}
+
+/********/
+
+/*
+ *BPM tapper adapted from Rich Reel http://www.all8.com/tools/bpm.htm
+ */
+var tap_count = 0;
+var tap_msecsFirst = 0;
+var tap_msecsPrevious = 0;
+
+function ResetCount()
+  {
+  tap_count = 0;
+  document.getElementById("bpm_text").value = "120";
+  //document.TAP_DISPLAY.T_TAP.value = "";
+  //document.TAP_DISPLAY.T_RESET.blur();
+  }
+
+function TapForBPM(e)
+  {
+  //document.TAP_DISPLAY.T_WAIT.blur();
+  var timeSeconds = new Date;
+  msecs = timeSeconds.getTime();
+  if ((msecs - tap_msecsPrevious) > 2000) //T_WAIT.value 2 seconds
+    {
+    tap_count = 0;
+    }
+
+  if (tap_count == 0)
+    {
+    //document.getElementById("bpmIn").value = "0";
+    //document.TAP_DISPLAY.T_TAP.value = "First Beat";
+    tap_msecsFirst = msecs;
+    tap_count = 1;
+    }
+  else
+    {
+    var bpmAvg = 60000 * tap_count / (msecs - tap_msecsFirst);
+    document.getElementById("bpm_text").value = Math.round(bpmAvg);
+    tap_count++;
+    //document.TAP_DISPLAY.T_TAP.value = tap_count;
+    }
+  tap_msecsPrevious = msecs;
+  return true;
+  }
