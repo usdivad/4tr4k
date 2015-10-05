@@ -56,7 +56,7 @@ var noise_data = "0";
 var hat_synth  = T("pulse", {freq: hat_sequence, mul: amp});
 var snare_synth  = T("pulse", {freq: snare_sequence, mul: amp});
 var kick_synth  = T("pulse", {freq: kick_sequence, mul: amp});
-var noise_synth  = T("pulse", {freq: noise_sequence, mul: amp});
+var noise_synth  = T("noise", {freq: noise_sequence, mul: amp});
 
 var oldMelody = [hat_data, snare_data, kick_data, noise_data, h_seq_string, s_seq_string, k_seq_string, n_seq_string, bpm];
 var newMelody = oldMelody;

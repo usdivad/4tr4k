@@ -37,12 +37,12 @@ function set_tracks(rh, rs, rk, rn, ph, ps, pk, pn, b) {
 
 
 	//toggle these on/off depending on whether you want them that way. e.g. 
-	/*
-	hat_index = 0;
-	snare_index = 0;
-	kick_index = 0;
-	noise_index = 0;
-	*/
+	
+	// hat_index = 0;
+	// snare_index = 0;
+	// kick_index = 0;
+	// noise_index = 0;
+	
 
 	updateAll();
 }
@@ -352,6 +352,8 @@ function random_pitchSingle() {
 var tap_count = 0;
 var tap_msecsFirst = 0;
 var tap_msecsPrevious = 0;
+
+
 
 function ResetCount()
   {

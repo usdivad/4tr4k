@@ -72,7 +72,7 @@ html {
 			}
 			#r_box, #p_box, #display_boxes{
 				float:left;
-				padding-right: 18px;
+				padding-right: 24px;
 			}
 			#display_boxes {
 				margin-top: 20px;

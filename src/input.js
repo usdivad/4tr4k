@@ -46,7 +46,7 @@ function pianoInput(note) {
 /** GEO <--> MELODY **/
 //incl. locations
 var LOC_MARGIN = 0.005;
-var EC_LAT = 40.807;
+var EC_LAT = 40.007;
 var EC_LON = -73.959;
 
 function det_melody(lat, lon) {
@@ -66,7 +66,7 @@ function det_melody(lat, lon) {
 //keyup so that  "focus" functions will happen after key is pressed
 //next is m,./
 
-var macro_keys = [81,87,69,82, 65,83,68,70, 71,67,66,81];
+var macro_keys = [01,07,69,02, 65,03,60,70, 71,67,66,01];
 $("body").keyup(function(e) { 
 
 	console.log(e.keyCode);
@@ -83,6 +83,12 @@ $("body").keyup(function(e) {
 	else if (e.keyCode == 188) { //, to pause
 		pauseAll();
 	}
+	// else if (e.keyCode == 39) { // cresc
+	// 	cresc();
+	// }
+	// else if (e.keyCode == 37) { // decresc
+	// 	decresc();
+	// }
 	else if (e.keyCode == 67) { //C to clear all
 		//console.log($(":focus")[0]);
 		$(":focus").val("");
@@ -92,12 +98,12 @@ $("body").keyup(function(e) {
 		cur.pop();
 		$(":focus").val(cur.join(" "));
 	}
-	else if (e.keyCode == 81) { //Q
+	else if (e.keyCode == 01) { //Q
 		var t = $("#hat_text").val();
 		$("#hat_text").focus();
 		$("#hat_text").val(t);
 	}
-	else if (e.keyCode == 87) { //W
+	else if (e.keyCode == 07) { //W
 		var t = $("#snare_text").val();
 		$("#snare_text").focus();
 		$("#snare_text").val(t);
@@ -107,7 +113,7 @@ $("body").keyup(function(e) {
 		$("#kick_text").focus();
 		$("#kick_text").val(t);
 	}
-	else if (e.keyCode == 82) { //R
+	else if (e.keyCode == 02) { //R
 		var t = $("#noise_text").val();
 		$("#noise_text").focus();
 		$("#noise_text").val(t);
@@ -118,13 +124,13 @@ $("body").keyup(function(e) {
 		$("#h_seq_text").val(t);
 		$("#h_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 83) { //S
+	else if (e.keyCode == 03) { //S
 		var t = $("#s_seq_text").val();
 		$("#s_seq_text").focus();
 		$("#s_seq_text").val(t);
 		$("#s_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 68) { //D
+	else if (e.keyCode == 60) { //D
 		var t = $("#k_seq_text").val();
 		$("#k_seq_text").focus();
 		$("#k_seq_text").val(t);
@@ -163,6 +169,64 @@ $("#preset_longTones").click(function() {
 
 	set_tracks("1", "1", "1", "1", random_pitchSingle(), random_pitchSingle(), random_pitchSingle(), random_pitchSingle(), $("#bpm_text").val());
 });
+
+//12/13
+
+//cresc/decresc
+var mul_increment = 0.01
+// var synths = [hat_synth, snare_synth, kick_synth, noise_synth];
+function cresc() {
+	// for (var i=0; i<synths.length; i++) {
+	// 	var synth = synths[i];
+	// 	synth.mul += mul_increment;
+	// }
+	hat_synth.mul += mul_increment;
+	snare_synth.mul += mul_increment;
+	kick_synth.mul += mul_increment;
+	noise_synth.mul += mul_increment;
+	console.log(hat_synth.mul);
+
+}
+function decresc() {
+	// for (var i=0; i<synths.length; i++) {
+	// 	var synth = synths[i];
+	// 	if (synth.mul > 0) {
+	// 		synth.mul -= mul_increment;
+	// 	}
+	// 	else {
+	// 		synth.mul = 0;
+	// 	}
+	// }
+	hat_synth.mul -= mul_increment;
+	snare_synth.mul -= mul_increment;
+	kick_synth.mul -= mul_increment;
+	noise_synth.mul -= mul_increment;
+	console.log(hat_synth.mul);
+}
+
+function A2() {
+	set_tracks("10100", "X", "10010", "1010X100", "Eb4 E4 D1 E2 Db0 Eb3 Eb2 G2 D3 F3 Gb1 A0", "Gb2 D3 E0 Gb2 D0 F3 Bb2 E1 Bb4 G1 A0 C4", "Eb1 E1 D0 E0 Db0 Eb0 Eb0 G0 D0 F0 Gb0 A0", "Eb1 E1 D0 E0 Db0 Eb0 Eb0 G0 D0 F0 Gb0 A0", $("#bpm_text").val());
+}
+
+function B() {
+	set_tracks("1", "1", "1", "1", "C0", "C0", "C0", "C0", $("#bpm_text").val());
+}
+
+function B1() {
+	set_tracks("1", "X", "X", "X", "C0", "C1 Gb0 Ab0", "C0 G0 Eb0", "C0 B0 A0", $("#bpm_text").val());
+}
+
+function B2() {
+	set_tracks("1", "1", "1", "1", "C8", "C8", "C8", "C8", $("#bpm_text").val());
+}
+
+function B3() {
+	set_tracks("1", "1", "1", "1", "Db7", "Db7", "C9", "G9", $("#bpm_text").val());
+}
+
+function B5() {
+	set_tracks("111000", "111000", "111000", "111000", "A3", "Db1", "Bb3", "F1", $("#bpm_text").val());
+}
 
 //controls for keyboard shortcuts macros
 $("#hat_text").keyup(function(e) {
@@ -260,7 +324,7 @@ $("#snapshot3_set").click(function() {
 //Random functions! YAY!!
 $("#random").click(function() {
 	//all random
-	// set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), Math.floor(Math.random()*180)+60);
+	// set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), Math.floor(Math.random()*100)+60);
 	
 	//keep bpm
 	set_tracks(random_rhythm(), random_rhythm(), random_rhythm(), random_rhythm(), random_pitch(), random_pitch(), random_pitch(), random_pitch(), $("#bpm_text").val());
