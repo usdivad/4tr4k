@@ -66,7 +66,7 @@ function det_melody(lat, lon) {
 //keyup so that  "focus" functions will happen after key is pressed
 //next is m,./
 
-var macro_keys = [01,07,69,02, 65,03,60,70, 71,67,66,01];
+var macro_keys = [81,87,69,82,65,83,60,70,71,67,66,68,190,188];
 $("body").keyup(function(e) { 
 
 	console.log(e.keyCode);
@@ -93,17 +93,17 @@ $("body").keyup(function(e) {
 		//console.log($(":focus")[0]);
 		$(":focus").val("");
 	}
-	else if (e.keyCode == 66) { //B to backspace to the prev space
+	else if (e.keyCode == 66 || e.keyCode == 8) { //B or backspace to backspace to the prev space
 		var cur = $(":focus").val().split(" ");
-		cur.pop();
+		var c = cur.pop();
 		$(":focus").val(cur.join(" "));
 	}
-	else if (e.keyCode == 01) { //Q
+	else if (e.keyCode == 81) { //Q
 		var t = $("#hat_text").val();
 		$("#hat_text").focus();
 		$("#hat_text").val(t);
 	}
-	else if (e.keyCode == 07) { //W
+	else if (e.keyCode == 87) { //W
 		var t = $("#snare_text").val();
 		$("#snare_text").focus();
 		$("#snare_text").val(t);
@@ -113,7 +113,7 @@ $("body").keyup(function(e) {
 		$("#kick_text").focus();
 		$("#kick_text").val(t);
 	}
-	else if (e.keyCode == 02) { //R
+	else if (e.keyCode == 82) { //R
 		var t = $("#noise_text").val();
 		$("#noise_text").focus();
 		$("#noise_text").val(t);
@@ -124,13 +124,13 @@ $("body").keyup(function(e) {
 		$("#h_seq_text").val(t);
 		$("#h_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 03) { //S
+	else if (e.keyCode == 83) { //S
 		var t = $("#s_seq_text").val();
 		$("#s_seq_text").focus();
 		$("#s_seq_text").val(t);
 		$("#s_select").attr("checked", "checked");
 	}
-	else if (e.keyCode == 60) { //D
+	else if (e.keyCode == 68) { //D
 		var t = $("#k_seq_text").val();
 		$("#k_seq_text").focus();
 		$("#k_seq_text").val(t);

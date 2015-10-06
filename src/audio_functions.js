@@ -144,6 +144,7 @@ function updateAll() {
 
 //timer -> synth on or off (dep on code in)
 function onOff(data, synth, i, seq, seq_i, active, disp) {
+	console.log(data);
 
 	//console.log(i);
 	//check rhythm
@@ -302,6 +303,9 @@ function snapshot_save() {
 
 function snapshot_set(snapshot) {
 	var s = snapshot;
+	if (s.length < 1) {
+		return;
+	}
 	set_tracks(s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8]);
 }
 

@@ -113,6 +113,12 @@ input[type=button]
     text-transform:uppercase;
     box-shadow:-1px 2px #6E6B6A inset;
 }
+input[type=button]:hover {
+  opacity:0.75;
+}
+input[type=button]:active {
+  color: green;
+}
 input[type=radio] {
       background-color: #1E1E1E;
 
