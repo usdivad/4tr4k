@@ -8,7 +8,7 @@
 				var ob = bpm_to_ms(oldMelody[8]);
 				var nb = bpm_to_ms(newMelody[8]);
 				var bpmSlice = (nb-ob)/7; //each step of the counter it'll increase by this much
-				//console.log(ob+" "+nb+", "+bpmSlice);
+				console.log(ob+" "+nb+", "+bpmSlice);
 
 				switch (ct_counter) {
 					case -1:
@@ -36,19 +36,19 @@
 						$("#h_seq_text").val(h_seq_string);
 						hat_sequence = T($("#h_seq_text").val().split(" ").map(atof));
 						hat_synth.freq = hat_sequence;
-						break;
+						// break;
 					case 5:
 						s_seq_string = newMelody[5];
 						$("#s_seq_text").val(s_seq_string);
 						snare_sequence = T($("#s_seq_text").val().split(" ").map(atof));
 						snare_synth.freq = snare_sequence;
-						break;
+						// break;
 					case 4: //4th, not 6th
 						k_seq_string = newMelody[6];
 						$("#k_seq_text").val(k_seq_string);
 						kick_sequence = T($("#k_seq_text").val().split(" ").map(atof));
 						kick_synth.freq = kick_sequence;
-						break;
+						// break;
 					case 7:
 						n_seq_string = newMelody[7];
 						$("#n_seq_text").val(n_seq_string);
@@ -74,7 +74,7 @@
 					timer.interval = bpm;
 					//$("#bpm_text").val(ct_newBpm-=bpmSlice);
 				}
-				//updateAll();
+				updateAll();
 
 				//checking mute/unmute
 				// if ($("#h_active").attr("checked")) {
