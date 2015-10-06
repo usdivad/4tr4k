@@ -115,25 +115,25 @@ function updateAll() {
 	if ($("#h_seq_text").val() && $("#h_seq_text").val()!=h_seq_string) {
 		h_seq_string = $("#h_seq_text").val();
 		hat_sequence = $("#h_seq_text").val().split(" ").map(atof);
-		hat_synth.freq.value = hat_sequence;
+		// hat_synth.freq = hat_sequence;
 		// hat_synth.freq.bang();
 	}
 	if ($("#s_seq_text").val() && $("#s_seq_text").val() != s_seq_string) {
 		s_seq_string = $("#s_seq_text").val();
 		snare_sequence = $("#s_seq_text").val().split(" ").map(atof);
-		snare_synth.freq = snare_sequence;
+		// snare_synth.freq = snare_sequence;
 		//snare_synth.freq.bang();
 	}
 	if ($("#k_seq_text").val() && $("#k_seq_text").val() != k_seq_string) {
 		k_seq_string = $("#k_seq_text").val();
 		kick_sequence = $("#k_seq_text").val().split(" ").map(atof);
-		kick_synth.freq = kick_sequence;
+		// kick_synth.freq = kick_sequence;
 		//kick_synth.freq.bang();
 	}
 	if ($("#n_seq_text").val() && $("#n_seq_text").val() != n_seq_string) {
 		n_seq_string = $("#n_seq_text").val();
 		noise_sequence = $("#n_seq_text").val().split(" ").map(atof);
-		noise_synth.freq = noise_sequence;
+		// noise_synth.freq = noise_sequence;
 	}
 	
 	//glob
@@ -161,14 +161,14 @@ function onOff(data, synth, i, seq, seq_i, active, disp) {
 		// console.log(seq.length + ' % ' + seq_i + ' = ' + seq.length%seq_i);
 
 		//set freq based on seq
-		synth.freq.value = seq[seq_i];
+		synth.freq = seq[seq_i];
 		if (seq_i >= seq.length-1) {
 			seq_i = 0;
 		}
 		else {
 			seq_i++;
 		}
-		console.log(synth.freq.value);
+		console.log(synth.freq);
 		// console.log(seq);
 		disp.css("visibility", "visible");
 	}

@@ -34,25 +34,25 @@
 					case 6: //6th, not 4th (just so melody is the last one to change)
 						h_seq_string = newMelody[4];
 						$("#h_seq_text").val(h_seq_string);
-						hat_sequence = T($("#h_seq_text").val().split(" ").map(atof));
-						hat_synth.freq = hat_sequence;
-						// break;
+						hat_sequence = $("#h_seq_text").val().split(" ").map(atof);
+						// hat_synth.freq = hat_sequence;
+						break;
 					case 5:
 						s_seq_string = newMelody[5];
 						$("#s_seq_text").val(s_seq_string);
-						snare_sequence = T($("#s_seq_text").val().split(" ").map(atof));
-						snare_synth.freq = snare_sequence;
-						// break;
+						snare_sequence = $("#s_seq_text").val().split(" ").map(atof);
+						// snare_synth.freq = snare_sequence;
+						break;
 					case 4: //4th, not 6th
 						k_seq_string = newMelody[6];
 						$("#k_seq_text").val(k_seq_string);
-						kick_sequence = T($("#k_seq_text").val().split(" ").map(atof));
-						kick_synth.freq = kick_sequence;
-						// break;
+						kick_sequence = $("#k_seq_text").val().split(" ").map(atof);
+						// kick_synth.freq = kick_sequence;
+						break;
 					case 7:
 						n_seq_string = newMelody[7];
 						$("#n_seq_text").val(n_seq_string);
-						noise_sequence = T($("#n_seq_text").val().split(" ").map(atof));
+						noise_sequence = $("#n_seq_text").val().split(" ").map(atof);
 						noise_synth.freq = noise_sequence;
 	
 
@@ -74,7 +74,7 @@
 					timer.interval = bpm;
 					//$("#bpm_text").val(ct_newBpm-=bpmSlice);
 				}
-				updateAll();
+				// updateAll();
 
 				//checking mute/unmute
 				// if ($("#h_active").attr("checked")) {

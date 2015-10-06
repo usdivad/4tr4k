@@ -16,6 +16,10 @@ var s_active = $("#s_active").attr("checked");
 var k_active = $("#k_active").attr("checked");
 var n_active = $("#n_active").attr("checked");
 
+if ($("#h_active").length < 1) {
+    h_active=true, s_active=true, k_active=true, n_active=true;
+}
+
 
 //DIFFERENT AGES vars
 var dax = 0;
@@ -53,10 +57,10 @@ var snare_data = "0";
 var kick_data = "0";
 var noise_data = "0";
 
-var hat_synth  = T("pulse", hat_sequence, amp);
-var snare_synth  = T("pulse", snare_sequence, amp);
-var kick_synth  = T("pulse", kick_sequence, amp);
-var noise_synth  = T("noise", noise_sequence, amp);
+var hat_synth  = T("pulse", {freq: hat_sequence[0], mul: amp});
+var snare_synth  = T("pulse", {freq: snare_sequence[0], mul: amp});
+var kick_synth  = T("pulse", {freq: kick_sequence[0], mul: amp});
+var noise_synth  = T("noise", {freq: noise_sequence[0], mul: amp});
 
 var oldMelody = [hat_data, snare_data, kick_data, noise_data, h_seq_string, s_seq_string, k_seq_string, n_seq_string, bpm];
 var newMelody = oldMelody;
@@ -75,6 +79,10 @@ var timer = T("interval", bpm, function() {
     s_active = $("#s_active").attr("checked");
     k_active = $("#k_active").attr("checked");
     n_active = $("#n_active").attr("checked");
+
+    if ($("#h_active").length < 1) {
+        h_active=true, s_active=true, k_active=true, n_active=true;
+    }
 
 	var h_idx_obj = onOff(hat_data, hat_synth, hat_index, hat_sequence, h_seq_idx, h_active, h_box);
 	var s_idx_obj = onOff(snare_data, snare_synth, snare_index, snare_sequence, s_seq_idx, s_active, s_box);
